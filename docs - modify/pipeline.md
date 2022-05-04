@@ -1,15 +1,14 @@
 ## Udagram Pipeline
 
-![Pipeline](pipeline.png)
+![Pipeline](Archs%20using%20lucid/Pipeline%20Arch.jpeg)
 
 ### Continuous Integration
 #### GitHub
-The developers commit and push their code to the GitHub repository which is linked to the CircleCI platform.
-GitHub triggers the CircleCI platform when code is pushed to the repository.
+The developers push and commit their code to a GitHub repository linked to the CircleCI platform.
+When code is pushed to GitHub, the CircleCI platform is triggered.
 
 #### CircleCI
 CircleCI reads the `.circleci/config.yml` file which tells the service what has to be done. In the case of Udagram,
-there are 2 jobs (frontend & server) to be run by CircleCI.
+CircleCI is responsible for two jobs (frontend and server).
 - **Frontend**: Runs the `build` script given in the `package.json` file. Then uses AWS CLI to upload assets to S3.
-- **Server**: Runs the `build` script, exports all environment variables from CircleCI configuration to a `.env` file,
-  then runs the `archive` script. Then uses AWS CLI to upload archive to S3.
+- **Server**: Runs the `build` script, then exports all CircleCI configuration environment variables to a '.env' file before running the 'archive' script. The archive is then uploaded to S3 using the AWS CLI.
