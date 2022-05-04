@@ -1,13 +1,4 @@
-
 {
-    "scripts": {},
-    "devDependencies": {}
-}
-
-{
-    "name": "hosting-full-stack",
-    "version": "1.0.0",
-    "description": "Hosting the Udacity Udagram Full Stack Application on AWS.",
     "scripts": {
       "api:build": "cd udagram-api && npm run build && cd ..",
       "api:install": "cd udagram-api && npm ci && cd ..",
