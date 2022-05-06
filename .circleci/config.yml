@@ -10,7 +10,7 @@ jobs:
       - node/install
       - checkout
       - aws-cli/setup
-      - aws-cli/install
+          profile-name: cli_user
       - run:
           name: Front-End Install
           command: |
