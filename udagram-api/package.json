@@ -2,15 +2,13 @@
   "name": "udagram-api",
   "version": "2.0.0",
   "description": "",
-  "main": "server.js",
   "scripts": {
-    "start": "node .",
+    "start": "node ./server",
     "tsc": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "prod": "tsc && node ./www/server.js",
     "clean": "rm -rf www/ || true",
     "build": "chmod +x ./bin/build.sh && ./bin/build.sh",
-    "deploy": "chmod +x ./bin/deploy.sh && ./bin/deploy.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
