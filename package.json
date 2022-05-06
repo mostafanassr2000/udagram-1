@@ -3,11 +3,14 @@
       "backend:build": "cd udagram-api && npm run build && cd ..",
       "backend:install": "cd udagram-api && npm install && cd ..",
       "backend:test": "cd udagram-api && npm run test && cd ..",
+
       "frontend:build": "cd udagram-frontend && npm run build && cd ..",
       "frontend:install": "cd udagram-frontend && npm install --legacy-peer-deps && cd ..",
       "frontend:test": "cd udagram-frontend && npm run test && cd ..",
+
       "postinstall": "npm run api:install && npm run fe:install"
     },
+    "devDependencies": {},
     "repository": {
       "type": "git",
       "url": "git+https://github.com/mostafanassr2000/udagram-1.git"
