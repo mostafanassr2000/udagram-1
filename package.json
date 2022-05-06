@@ -7,8 +7,7 @@
       "frontend:build": "cd udagram-frontend && npm run build && cd ..",
       "frontend:install": "cd udagram-frontend && npm install --legacy-peer-deps && cd ..",
       "frontend:test": "cd udagram-frontend && npm run test && cd ..",
-
-      "postinstall": "npm run api:install && npm run fe:install"
+      "frontend:deploy": "cd udagram-frontend && npm run deploy && cd .."
     },
     "devDependencies": {},
     "repository": {
