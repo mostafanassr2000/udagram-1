@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  node: circleci/node@x.y
+  node: circleci/node@16
   aws-cli: circleci/aws-cli@2.0.0
 jobs:
   build:
