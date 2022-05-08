@@ -21,8 +21,6 @@ jobs:
           command: | 
             npm run backend:install
   build:  #build frontend and backend code 
-    requires: 
-      - install #dependencies should be installed first
     executor: node/default
     steps:
       - node/install
@@ -46,8 +44,6 @@ jobs:
             npm run backend:setenv
 
   deploy:  #deploy website
-    requires:   
-      - build
     executor: node/default
     steps:
       - node/install
