@@ -64,10 +64,10 @@ workflows:
   install:
     jobs:
       - install
-  build:
-     jobs:
-      - build
-  deploy:
-     jobs:
-      - deploy
+      - build:
+        requires:
+          - install
+      - deploy:
+        requires:
+          - build
   
