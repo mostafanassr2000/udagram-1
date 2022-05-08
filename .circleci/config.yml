@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@5.0.2  #node version in circleci
   aws-cli: circleci/aws-cli@2.0.0 #aws command line interface version in circleci
 jobs:
-  install:  #install dependencies
+  frontend:
     docker:
       - image: "cimg/base:stable"
     steps:
@@ -17,11 +17,16 @@ jobs:
           command: | 
             npm run frontend:install  
       - run:
-          #install frontend dependencies
-          name: Back-End Install
-          command: | 
-            npm run backend:install
-  build:  #build frontend and backend code 
+          #build frontend code (www)
+          name: Front-End Build
+          command: |
+            npm run frontend:build
+      - run:
+          #host frontend application
+          name: Deploy App
+          command: |
+            npm run frontend:deploy
+  server:
     docker:
       - image: "cimg/base:stable"
     steps:
@@ -30,10 +35,10 @@ jobs:
       - aws-cli/setup:  #Defining the AWS IAM user
           profile-name: cli_user
       - run:
-          #build frontend code (www)
-          name: Front-End Build
-          command: |
-            npm run frontend:build
+          #install frontend dependencies
+          name: Back-End Install
+          command: | 
+            npm run backend:install  
       - run:
           #build backend code (www)
           name: Back-End Build
@@ -44,31 +49,13 @@ jobs:
           name: Set enviroment variables
           command: |
             npm run backend:setenv
-  deploy:  #deploy website
-    docker:
-      - image: "cimg/base:stable"
-    steps:
-      - node/install
-      - checkout
-      - aws-cli/setup:  #Defining the AWS IAM user
-          profile-name: cli_user
       - run:
           #deploy server so that it can be connected with frontend
           name: Deploy Server
           command: |
             npm run backend:deploy
-      - run:
-          #host frontend application
-          name: Deploy App
-          command: |
-            npm run frontend:deploy
 workflows:
-  install_build_deploy:
+  my_workflow:
     jobs:
-      - install
-      - build:
-          requires: #dependencies should be installed first
-            - install
-      - deploy: #deployment process happens after install and build
-          requires:
-            - build
+      - frontend
+      - server
