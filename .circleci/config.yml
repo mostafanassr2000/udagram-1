@@ -22,7 +22,8 @@ jobs:
             npm run backend:install
 
   build1:
-    executor: node/default
+    machine:
+      enabled: true
     steps:
       - checkout
   build:  #build frontend and backend code 
