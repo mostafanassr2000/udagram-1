@@ -1,1 +1,1 @@
-eb.exe use Node-env && eb.exe deploy
+eb use Node-env && eb deploy
