@@ -1,1 +1,1 @@
-eb use Node-env --profile cli_user && eb deploy
+eb.exe use Node-env && eb.exe deploy
