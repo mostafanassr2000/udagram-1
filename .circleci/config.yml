@@ -4,8 +4,6 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.0 #aws command line interface version in circleci
 jobs:
   install:  #install dependencies
-    docker:
-      - image: "cimg/base:stable"
     executor: node/default
     steps:
       - node/install
@@ -22,13 +20,9 @@ jobs:
           name: Back-End Install
           command: | 
             npm run backend:install
-
-  build1:
-    machine:
-        enabled: true
-    steps:
-      - checkout
   build:  #build frontend and backend code 
+    requires: 
+      - install #dependencies should be installed first
     executor: node/default
     steps:
       - node/install
@@ -52,6 +46,8 @@ jobs:
             npm run backend:setenv
 
   deploy:  #deploy website
+    requires:   
+      - build
     executor: node/default
     steps:
       - node/install
@@ -69,13 +65,12 @@ jobs:
           command: |
             npm run frontend:deploy
 workflows:
-  version: 2
-  my_workflow:
+  install_build_deploy:
     jobs:
       - install
-      - build1:
+      - build:
           requires:
             - install
-
-
-  
+      - deploy:
+          requires:
+            - build
