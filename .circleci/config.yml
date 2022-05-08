@@ -61,8 +61,13 @@ jobs:
           command: |
             npm run frontend:deploy
 workflows:
-  install_build_deploy:
+  install:
     jobs:
       - install
+  build:
+     jobs:
       - build
+  deploy:
+     jobs:
       - deploy
+  
