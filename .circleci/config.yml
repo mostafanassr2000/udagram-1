@@ -1,33 +1,72 @@
 version: 2.1
 orbs:
-  node: circleci/node@5.0.2
-  aws-cli: circleci/aws-cli@2.0.0
+  node: circleci/node@5.0.2  #node version in circleci
+  aws-cli: circleci/aws-cli@2.0.0 #aws command line interface version in circleci
 jobs:
-  build:
-    docker:
-      - image: "cimg/base:stable"
+  install:  #install dependencies
+    executor: node/default
     steps:
       - node/install
       - checkout
-      - aws-cli/setup:
+      - aws-cli/setup:  #Defining the AWS IAM user
           profile-name: cli_user
       - run:
+          #install frontend dependencies
           name: Front-End Install
-          command: |
-            npm run frontend:install
+          command: | 
+            npm run frontend:install  
       - run:
+          #install frontend dependencies
           name: Back-End Install
-          command: |
+          command: | 
             npm run backend:install
+  build:  #build frontend and backend code 
+    requires: 
+      - install #dependencies should be installed first
+    executor: node/default
+    steps:
+      - node/install
+      - checkout
+      - aws-cli/setup:  #Defining the AWS IAM user
+          profile-name: cli_user
       - run:
+          #build frontend code (www)
           name: Front-End Build
           command: |
             npm run frontend:build
       - run:
+          #build backend code (www)
           name: Back-End Build
           command: |
             npm run backend:build
       - run:
+          #Set enviroment variables on elastic beanstalk 
+          name: Set enviroment variables
+          command: |
+            npm run backend:setenv
+
+  deploy:  #deploy website
+    requires:   
+      - build
+    executor: node/default
+    steps:
+      - node/install
+      - checkout
+      - aws-cli/setup:  #Defining the AWS IAM user
+          profile-name: cli_user
+      - run:
+          #deploy server so that it can be connected with frontend
+          name: Deploy Server
+          command: |
+            npm run backend:deploy
+      - run:
+          #host frontend application
           name: Deploy App
           command: |
             npm run frontend:deploy
+workflows:
+  install_build_deploy:
+    jobs:
+      - install
+      - build
+      - deploy

@@ -3,6 +3,8 @@
       "backend:build": "cd udagram-api && npm run build && cd ..",
       "backend:install": "cd udagram-api && npm install && cd ..",
       "backend:test": "cd udagram-api && npm run test && cd ..",
+      "backend:setenv": "cd udagram-api && npm run setenv && cd ..",
+      "backend:deploy": "cd udagram-api && npm run deploy && cd ..",
 
       "frontend:build": "cd udagram-frontend && npm run build && cd ..",
       "frontend:install": "cd udagram-frontend && npm install --legacy-peer-deps && cd ..",
