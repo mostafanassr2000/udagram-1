@@ -35,6 +35,11 @@ jobs:
       - aws-cli/setup:  #Defining the AWS IAM user
           profile-name: cli_user
       - run:
+          name: Install pip
+          command: |
+            sudo apt update
+            sudo apt install -y python-pip
+      - run:
           name: Install AWS dependencies
           command: |
             sudo pip install awsebcli
