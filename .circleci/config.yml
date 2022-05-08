@@ -20,6 +20,10 @@ jobs:
           name: Back-End Install
           command: | 
             npm run backend:install
+
+  build1:
+    steps:
+      - checkout
   build:  #build frontend and backend code 
     executor: node/default
     steps:
@@ -65,5 +69,8 @@ workflows:
   install-build-deploy:
     jobs:
       - install
+      - build1:
+        requires:
+          - install
 
   
