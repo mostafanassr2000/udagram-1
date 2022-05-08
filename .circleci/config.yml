@@ -4,7 +4,7 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.0 #aws command line interface version in circleci
 jobs:
   install:  #install dependencies
-   docker:
+    docker:
       - image: "cimg/base:stable"
     executor: node/default
     steps:
