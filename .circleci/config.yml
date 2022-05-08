@@ -10,19 +10,6 @@ jobs:
     steps:
       - node/install
       - checkout
-      - aws-cli/setup:  #Defining the AWS IAM user
-          profile-name: cli_user
-      - run:
-          #install frontend dependencies
-          name: Front-End Install
-          command: | 
-            npm run frontend:install  
-      - run:
-          #install frontend dependencies
-          name: Back-End Install
-          command: | 
-            npm run backend:install
-
   build1:
     machine:
         enabled: true
