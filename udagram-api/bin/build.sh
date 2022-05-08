@@ -1,1 +1,1 @@
-npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && tar.exe -acf Archive.zip . && cd ..
+npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && tar -acf Archive.zip . && cd ..
