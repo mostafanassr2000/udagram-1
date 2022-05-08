@@ -65,7 +65,5 @@ workflows:
   install-build-deploy:
     jobs:
       - install
-      - build:
-        requires:
-          - install
+
   
