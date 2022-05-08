@@ -62,7 +62,7 @@ jobs:
             npm run frontend:deploy
 workflows:
   version: 2
-  install_build_deploy:
+  install-build-deploy:
     jobs:
       - install
       - build:
