@@ -66,5 +66,13 @@ jobs:
 workflows:
   my_workflow:
     jobs:
-      - frontend
-      - server
+      - frontend:
+          filters:
+            branches:
+              only:
+                - main
+      - server:
+          filters:
+            branches:
+              only:
+                - main
