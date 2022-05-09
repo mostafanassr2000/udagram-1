@@ -1,1 +1,1 @@
-aws s3 cp --recursive --acl public-read ./www s3://mostafa-bucket-123/
+aws s3 cp --recursive --acl public-read ./www $AWS_BUCKET
